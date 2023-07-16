@@ -1,5 +1,4 @@
 <?php
-
     $host = 'localhost';
     $dbname = 'bacharev_music';
     $user = 'bacharev_music';
