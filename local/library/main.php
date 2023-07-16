@@ -5,7 +5,7 @@
 
     class User {
 
-        public static function function userCheck($email){
+        public static function userCheck($email){
 
             global $db;
             $login = $db->query("SELECT * FROM user WHERE email='$email'"); 
@@ -15,7 +15,7 @@
 
         }
 
-        public static function function login($post){
+        public static function login($post){
 
             $email = $post["email"];
             $password = $post["password"];
@@ -62,7 +62,7 @@
 
         }
 
-        public static function function register($post){
+        public static function register($post){
 
             $name = $post;
             $email = $post;
@@ -70,7 +70,7 @@
             $confirm = $post;
 
             global $db;
-            $myrow = static::userCheck($email)
+            $myrow = static::userCheck($email);
             $otvet = array(
                 "ID" => "",
                 "MESSAGE" => "",

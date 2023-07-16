@@ -1,3 +1,4 @@
+/config/
 /config/*
 .htaccess
 PHP_errors.log
