@@ -1,0 +1,48 @@
+[15-Jul-2023 14:24:17 Europe/Moscow] PHP Warning:  require_once(/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php): Failed to open stream: No such file or directory in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:24:17 Europe/Moscow] PHP Fatal error:  Uncaught Error: Failed opening required '/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php' (include_path='.:/usr/share/php') in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:40:00 Europe/Moscow] PHP Warning:  require_once(/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php): Failed to open stream: No such file or directory in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:40:00 Europe/Moscow] PHP Fatal error:  Uncaught Error: Failed opening required '/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php' (include_path='.:/usr/share/php') in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:40:47 Europe/Moscow] PHP Warning:  require_once(/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php): Failed to open stream: No such file or directory in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:40:47 Europe/Moscow] PHP Fatal error:  Uncaught Error: Failed opening required '/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php' (include_path='.:/usr/share/php') in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:40:47 Europe/Moscow] PHP Deprecated:  PHP Request Shutdown: Use of mbstring.internal_encoding is deprecated in Unknown on line 0
+[15-Jul-2023 14:40:48 Europe/Moscow] PHP Warning:  require_once(/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php): Failed to open stream: No such file or directory in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:40:48 Europe/Moscow] PHP Fatal error:  Uncaught Error: Failed opening required '/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php' (include_path='.:/usr/share/php') in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:40:48 Europe/Moscow] PHP Deprecated:  PHP Request Shutdown: Use of mbstring.internal_encoding is deprecated in Unknown on line 0
+[15-Jul-2023 14:40:48 Europe/Moscow] PHP Warning:  require_once(/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php): Failed to open stream: No such file or directory in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:40:48 Europe/Moscow] PHP Fatal error:  Uncaught Error: Failed opening required '/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php' (include_path='.:/usr/share/php') in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:40:48 Europe/Moscow] PHP Deprecated:  PHP Request Shutdown: Use of mbstring.internal_encoding is deprecated in Unknown on line 0
+[15-Jul-2023 14:40:48 Europe/Moscow] PHP Warning:  require_once(/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php): Failed to open stream: No such file or directory in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:40:48 Europe/Moscow] PHP Fatal error:  Uncaught Error: Failed opening required '/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php' (include_path='.:/usr/share/php') in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:40:48 Europe/Moscow] PHP Deprecated:  PHP Request Shutdown: Use of mbstring.internal_encoding is deprecated in Unknown on line 0
+[15-Jul-2023 14:41:04 Europe/Moscow] PHP Deprecated:  PHP Request Shutdown: Use of mbstring.internal_encoding is deprecated in Unknown on line 0
+[15-Jul-2023 14:41:14 Europe/Moscow] PHP Warning:  require_once(/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php): Failed to open stream: No such file or directory in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 1
+[15-Jul-2023 14:41:14 Europe/Moscow] PHP Fatal error:  Uncaught Error: Failed opening required '/home/b/bacharev/newmusic.bacharev.beget.tech/public_htmllocal/tmp/header.php' (include_path='.:/usr/share/php') in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 1
+[15-Jul-2023 14:41:46 Europe/Moscow] PHP Parse error:  syntax error, unexpected identifier "print_r" in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/index.php on line 5
+[15-Jul-2023 14:42:18 Europe/Moscow] PHP Deprecated:  PHP Request Shutdown: Use of mbstring.internal_encoding is deprecated in Unknown on line 0
+[16-Jul-2023 11:43:54 Europe/Moscow] PHP Deprecated:  PHP Request Shutdown: Use of mbstring.internal_encoding is deprecated in Unknown on line 0
+[16-Jul-2023 11:50:37 Europe/Moscow] PHP Parse error:  Unmatched '}' in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/local/ajax/recomend.php on line 43
+[16-Jul-2023 11:51:11 Europe/Moscow] PHP Parse error:  Unmatched '}' in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/local/ajax/recomend.php on line 43
+[16-Jul-2023 11:51:26 Europe/Moscow] PHP Parse error:  Unmatched '}' in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/local/ajax/recomend.php on line 43
+[16-Jul-2023 11:51:46 Europe/Moscow] PHP Parse error:  Unmatched '}' in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/local/ajax/recomend.php on line 43
+[16-Jul-2023 12:46:33 Europe/Moscow] PHP Parse error:  syntax error, unexpected identifier "userCheck", expecting "(" in /home/b/bacharev/newmusic.bacharev.beget.tech/public_html/local/library/main.php on line 8

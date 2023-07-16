@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.app.dk{
+    height: 100%;
+}
+
+.app-content{
+    height: 100%;
+}
+
+.app-body{
+    height: 100%;
+}
+
+.page-content{
+    height: 100%;
+}
+
+.d-flex {
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.block-column{
+    flex-direction: column;
+    position: relative;
+}
+
+.content-center{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+pre{
+    background: transparent;
+}
