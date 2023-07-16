@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="ru">
 <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/prolog.php';?>
+<?
+    global $userArray;
+?>
 <head>
   <meta charset="utf-8" />
   <title>Курсовой проект</title>
@@ -81,7 +84,7 @@
                         </li>*/?>
                         <li class="nav-item dropdown">
                             <?
-                                if($auth){
+                                if($userArray){
                                     ?>
                                         <a href="#" class="nav-link clear" data-toggle="dropdown">
                                             <span class="avatar w-32">
@@ -105,7 +108,7 @@
                                             <a class="dropdown-item" href="docs.html">
                                                 Поддержка
                                             </a>
-                                            <a class="dropdown-item" href="signin.html">Выйти</a>
+                                            <a data-logout class="dropdown-item" href="javascript:void(0);">Выйти</a>
                                         </div>
                                     <?
                                 }else{

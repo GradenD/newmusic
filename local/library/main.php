@@ -5,6 +5,11 @@
 
     class User {
 
+        public static function logout(){
+            setcookie('email','', time()-3600, '/');
+            setcookie('SESSID', '', time()-3600, '/');
+        }
+
         public static function userCheck($email){
 
             global $db;
@@ -31,7 +36,7 @@
 
                 if(!empty($myrow)){
     
-                    $hash = md5($password . $salt);
+                    $hash = md5($password);
                     
                     if($hash == $myrow['password']){
     
@@ -84,7 +89,7 @@
 
                 if ($password == $confirm){
                     if (preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i", $email)) {
-                        $pass = md5($password . $salt);
+                        $pass = md5($password);
                         $query = $db->prepare("
                             INSERT INTO user(name, email, password) VALUES (?, ?, ?)
                         ");

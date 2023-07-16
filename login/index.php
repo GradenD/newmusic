@@ -1,4 +1,9 @@
-<?require_once $_SERVER["DOCUMENT_ROOT"].'/local/tmp/header.php'?>
+<?require_once $_SERVER["DOCUMENT_ROOT"].'/local/tmp/header.php';
+    global $userArray;
+    if($userArray){
+        header("Location: /index.php");
+    }
+?>
 
 <div class="content-center d-flex">
     <div class="padding">

@@ -23,13 +23,9 @@
         }
     }
     if($auth){
-        $usrId=$usr['id'];
-        $usrMail=$usr['email'];
-        $usrName=$usr['name'];   
-        $usrLast=$usr['lastname'];  
-        $usrPhone=$usr['phone'];  
-        $usrSkype=$usr['skype'];  
-        $usrCountry=$usr['country']; 
-        $usrInstagram=$usr['instagram']; 
+        
+        global $userArray;
+        $userArray = $usr;
+
     }
 ?>

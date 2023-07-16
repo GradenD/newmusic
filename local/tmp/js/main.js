@@ -21,11 +21,26 @@ $( document ).ready(function() {
                 url: "/local/ajax/user/login.php",
                 data: $(this).serialize(),
                 success: function (data) {
-                    $("#otvet").html(data);
+                    if(data == "true"){
+                        location. reload()
+                    }else{
+                        $("#otvet").html(data);
+                    }
                 },
             });
         });
 
+    }
+
+    if ($("[data-logout]").length > 0) {
+        $.ajax({
+            type: "POST",
+            url: "/local/ajax/user/logout.php",
+            data: $(this).serialize(),
+            success: function (data) {
+                location.reload();
+            },
+        });
     }
 
 });
