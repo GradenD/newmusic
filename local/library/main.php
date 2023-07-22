@@ -120,48 +120,58 @@
 
     }
 
+    class Album {
+
+        public static $ripMusic = "/upload/music/";
+        public static $ripPoster = "/upload/img/";
+
+        public static function AlbumItogArray($albom, $autor){
+            $ob = new Music;
+            $autor = $ob->autorArray($autor); 
+
+            $arr["albom"] = $albom;
+            $arr["autor"] = $autor;
+            return $arr;
+        }
+
+        public static function NewAlbum($l){
+            global $db;
+            $q = $db->query("SELECT * FROM album WHERE new=1 LIMIT $l");
+            if($q) {
+                while($r=$q->fetch_assoc()){
+                    $albom[]=$r;
+                    $autor[] = $r["autor"];
+                } 
+            }
+
+            $arr = static::AlbumItogArray($albom, $autor);
+
+            return $arr;
+        }
+
+        public static function IndexAlbum($l){
+            global $db;
+            $q = $db->query("SELECT * FROM album WHERE indexPage=1 LIMIT $l");
+            if($q) {
+                while($r=$q->fetch_assoc()){
+                    $albom[]=$r;
+                    $autor[] = $r["autor"];
+                } 
+            }
+
+            $arr = static::AlbumItogArray($albom, $autor);
+
+            return $arr;
+        }
+
+    }
+
     class Music {
 
         public static $ripMusic = "/upload/music/";
         public static $ripPoster = "/upload/img/";
 
-        public static function musicArray($limit){
-
-            global $db;
-            $q = $db->query("SELECT * FROM music_autor ORDER BY listening DESC LIMIT 10");
-
-            if($q) {
-                $music = array();
-
-                $ripPoster = self::$ripPoster;
-    
-                $arr = [];
-                while($r=$q->fetch_assoc()){
-                    $arr[]=$r;
-                } 
-            }
-
-            return $arr;
-
-        }
-
-        public static function autorArray($id){
-            global $db;
-            $q = $db->query("SELECT * FROM author WHERE id IN ($id);"); 
-            $autor = [];
-            if($q) {
-                while($r=$q->fetch_assoc()){
-                    $autor[$r["id"]]=$r;
-                } 
-            }
-
-            return $autor;
-        }
-
-        public static function recomend($limit){
-
-            $arr = static::musicArray($limit);
-            $music = array();
+        public static function sborkaMusic($arr){
 
             if($arr) {
 
@@ -174,8 +184,7 @@
                 
                 }
 
-                $idAutor = join(',', $autorArray);
-                $autorArray = static::autorArray($idAutor);
+                $autorArray = static::autorArray($autorArray);
 
                 foreach($arr as $key => $value){
                     $emp = $autorArray[$value['autor']];
@@ -190,6 +199,120 @@
                 }
 
             }
+
+            return $music;
+        }
+
+        public static function MusicItogArray($q){
+            if($q) {
+                $music = array();
+
+                $ripPoster = self::$ripPoster;
+    
+                $arr = [];
+                while($r=$q->fetch_assoc()){
+                    $arr[]=$r;
+                } 
+            }
+
+            return $arr;
+        }
+
+        public static function ChartMusicArray($limit){
+            global $db;
+            $q = $db->query("SELECT * FROM music_autor ORDER BY id DESC LIMIT $limit");
+
+            if($q) {
+
+                $arr = static::MusicItogArray($q);
+
+            }
+
+            return $arr;
+        }
+
+        public static function RecomendMusicArray($limit){
+            global $db;
+            $q = $db->query("SELECT * FROM music_autor ORDER BY id DESC LIMIT $limit");
+
+            if($q) {
+
+                $arr = static::MusicItogArray($q);
+
+            }
+
+            return $arr;
+        }
+
+        public static function TreadingMusicArray($limit){
+
+            global $db;
+            $q = $db->query("SELECT * FROM music_autor ORDER BY listening DESC LIMIT $limit");
+
+            if($q) {
+
+                $arr = static::MusicItogArray($q);
+
+            }
+
+            return $arr;
+
+        }
+
+        public static function NewMusicArray($limit){
+
+            global $db;
+            $q = $db->query("SELECT * FROM music_autor ORDER BY id DESC LIMIT $limit");
+            if($q) {
+
+                $arr = static::MusicItogArray($q);
+
+            }
+
+            return $arr;
+
+        }
+
+        public static function autorArray($autorArray){
+            global $db;
+            $id = join(',', $autorArray);
+            $q = $db->query("SELECT * FROM author WHERE id IN ($id);"); 
+            $autor = [];
+            if($q) {
+                while($r=$q->fetch_assoc()){
+                    $autor[$r["id"]]=$r;
+                } 
+            }
+
+            return $autor;
+        }
+
+        public static function recomend($limit){
+
+            $arr = static::RecomendMusicArray($limit);
+            $music = array();
+
+            $music = static::sborkaMusic($arr);
+
+            return $music;
+        }
+
+        public static function treading($limit){
+
+            $arr = static::TreadingMusicArray($limit);
+            $music = array();
+
+            $music = static::sborkaMusic($arr);
+
+            return $music;
+        }
+
+        public static function newMusic($limit){
+
+            $arr = static::NewMusicArray($limit);
+            $music = array();
+
+            $music = static::sborkaMusic($arr);
 
             return $music;
         }

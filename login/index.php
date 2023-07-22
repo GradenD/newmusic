@@ -28,7 +28,7 @@
             <div class="m-y text-sm">
                 Остался один шаг до Музыки
             </div>
-            
+
             <form id="form-auth" method="post" name="form" action="javascript:void(0);">
                 <div class="form-group">
                     <input type="email" name="email" class="form-control" placeholder="Email" required>
