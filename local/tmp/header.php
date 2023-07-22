@@ -95,7 +95,7 @@
                                             </span>
                                         </a>
                                         <div class="dropdown-menu w dropdown-menu-scale pull-right">
-                                            <a class="dropdown-item" href="profile.html#profile">
+                                            <a class="dropdown-item" href="/users/">
                                                 <span>Профиль</span>
                                             </a>
                                             <a class="dropdown-item" href="profile.html#tracks">
