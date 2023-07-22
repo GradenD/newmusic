@@ -1,6 +1,8 @@
-<?
+<?php
     require_once $_SERVER["DOCUMENT_ROOT"].'/config/db.php';
     global $db;
+    global $logoTitle;
+    $logoTitle = "Курсовой";
     if ($db->connect_error) {
         die('Ошибка подключения (' . $mysqli->connect_errno . ')'.$mysqli->connect_error);
     }else{

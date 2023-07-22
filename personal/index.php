@@ -3,7 +3,7 @@
 <?
   global $auth;
   if($auth){
-    require_once 'personal/lk.php';
+    require_once 'lk.php';
   }else{
     require_once 'register.php';
   }

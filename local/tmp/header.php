@@ -1,9 +1,9 @@
-<!doctype html>
-<html lang="ru">
-<?require_once $_SERVER["DOCUMENT_ROOT"].'/local/prolog.php';?>
 <?
+    require_once $_SERVER["DOCUMENT_ROOT"].'/local/prolog.php';
     global $userArray;
 ?>
+<!doctype html>
+<html lang="ru">
 <head>
   <meta charset="utf-8" />
   <title>Курсовой проект</title>
@@ -38,6 +38,9 @@
   <link rel="stylesheet" href="/local/tmp/libs/mediaelement/build/mep.css" type="text/css" />
   <link rel="stylesheet" href="/local/tmp/css/main.css" type="text/css" />
 
+  <!-- jQuery -->
+  <script src="/local/tmp/libs/jquery/dist/jquery.js"></script>
+
   <!-- endbuild -->
 </head>
 <body class="black" data-ui-class="black">
@@ -61,7 +64,7 @@
                         </svg>
                     
                         <img src="/images/logo.png" alt="." class="hide">
-                        <span class="hidden-folded inline">Курсовой</span>
+                        <span class="hidden-folded inline"><?=$logoTitle?></span>
                     </a>
                     <!-- / brand -->
             
@@ -149,11 +152,6 @@
                                 <span class="nav-text">Исполнители</span>
                                 </a>
                             </li>
-                            <?php if($admin):?>
-								<li class="nav-item">
-									<a class="nav-link" href="/admin/">ADMIN</a>
-								</li>
-							<?php endif;?>
                         </ul>
                         <!-- / link and dropdown -->
                     </div>

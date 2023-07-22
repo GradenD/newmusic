@@ -311,8 +311,6 @@
   </div>
 
 <!-- build:js js/app.min.js -->
-<!-- jQuery -->
-  <script src="/local/tmp/libs/jquery/dist/jquery.js"></script>
 <!-- Bootstrap -->
   <script src="/local/tmp/libs/tether/dist/js/tether.min.js"></script>
   <script src="/local/tmp/libs/bootstrap/dist/js/bootstrap.js"></script>

@@ -13,33 +13,17 @@ $( document ).ready(function() {
 
     }
 
-    if ($("#form-auth").length > 0) {
-
-        $('#form-auth').submit(function(){
+    if ($("[data-logout]").length > 0) {
+        $("[data-logout]").click(function(){
             $.ajax({
                 type: "POST",
-                url: "/local/ajax/user/login.php",
+                url: "/local/ajax/user/logout.php",
                 data: $(this).serialize(),
                 success: function (data) {
-                    if(data == "true"){
-                        location. reload()
-                    }else{
-                        $("#otvet").html(data);
-                    }
+                    console.log("reload");
+                    location.reload();
                 },
             });
-        });
-
-    }
-
-    if ($("[data-logout]").length > 0) {
-        $.ajax({
-            type: "POST",
-            url: "/local/ajax/user/logout.php",
-            data: $(this).serialize(),
-            success: function (data) {
-                location.reload();
-            },
         });
     }
 

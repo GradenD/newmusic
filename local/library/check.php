@@ -3,8 +3,8 @@
     $admin=false;
     global $db;
     global $auth;
-    global $admin;
-    
+    global $admin;  
+    global $userArray; 
     if(isset($_COOKIE['email']) && isset($_COOKIE['SESSID'])){
         $email=$_COOKIE['email'];
         $session=$_COOKIE['SESSID'];
@@ -22,10 +22,17 @@
             }
         }
     }
-    if($auth){
-        
-        global $userArray;
-        $userArray = $usr;
 
+    if($auth){
+        $userArray = $usr;
+    }
+
+    if($userArray){
+        $url = $_SERVER['REQUEST_URI'];
+        $url = explode('?', $url);
+        $url = $url[0];
+        if($url == "/login/"){
+            header("Location: /index.php");
+        }
     }
 ?>

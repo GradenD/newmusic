@@ -20,6 +20,11 @@
 
         }
 
+        public static function setCookieUser($myrow){
+            setcookie('email', $myrow['email'], time()+3600*24*365, '/');
+            setcookie('SESSID', md5($myrow['email'].$myrow['password']),time()+3600*24*365, '/');
+        }
+
         public static function login($post){
 
             $email = $post["email"];
@@ -40,8 +45,7 @@
                     
                     if($hash == $myrow['password']){
     
-                        setcookie('email', $myrow['email'], time()+3600*24*365, '/');
-                        setcookie('SESSID', md5($myrow['email'].$myrow['password']),time()+3600*24*365, '/');
+                        $setCookie = static::setCookieUser($myrow);
     
                         $otvet["STATUS"] = true;
     
@@ -69,16 +73,17 @@
 
         public static function register($post){
 
-            $name = $post;
-            $email = $post;
-            $password = $post;
-            $confirm = $post;
+            $name = $post["name"];
+            $email = $post["email"];
+            $password = $post["password"];
+            $confirm = $post["confirm-password"];
 
             global $db;
             $myrow = static::userCheck($email);
+
             $otvet = array(
-                "ID" => "",
                 "MESSAGE" => "",
+                "STATUS" => false,
             );
 
             if (!empty($myrow['id'])){
@@ -88,20 +93,21 @@
             }else{
 
                 if ($password == $confirm){
-                    if (preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i", $email)) {
-                        $pass = md5($password);
-                        $query = $db->prepare("
-                            INSERT INTO user(name, email, password) VALUES (?, ?, ?)
-                        ");
-                        $query->bind_param("sss", $name, $email, $pass);
-                        $query->execute();
-                        if ($query){
-                            $otvet["MESSAGE"] = 'Вы успешно зарегистрированны!';
-                        }else{
-                            $otvet["MESSAGE"] = 'При регистрации возникла ошибка!';
-                        }
+                    $pass = md5($password);
+                    $query = $db->prepare("
+                        INSERT INTO user(name, email, password) VALUES (?, ?, ?)
+                    ");
+                    $query->bind_param("sss", $name, $email, $pass);
+                    $query->execute();
+                    
+                    if ($query){
+                        $otvet["MESSAGE"] = 'Вы успешно зарегистрированны!';
+                        $otvet["STATUS"] = true;
+                        
+                        $myrow = static::userCheck($email);
+                        $setCookie = static::setCookieUser($myrow);                     
                     }else{
-                        $otvet["MESSAGE"] = 'Адрес указан не правильно.';
+                        $otvet["MESSAGE"] = 'При регистрации возникла ошибка!';
                     }
                 }else{
                     $otvet["MESSAGE"] = 'Пароли не совпадают!';

@@ -1,9 +1,4 @@
-<?require_once $_SERVER["DOCUMENT_ROOT"].'/local/tmp/header.php';
-    global $userArray;
-    if($userArray){
-        header("Location: /index.php");
-    }
-?>
+<?require_once $_SERVER["DOCUMENT_ROOT"].'/local/tmp/header.php';?>
 
 <div class="content-center d-flex">
     <div class="padding">
@@ -33,7 +28,8 @@
             <div class="m-y text-sm">
                 Остался один шаг до Музыки
             </div>
-            <form id="form-auth" method="post"  name="form" action="javascript:void(0);">
+            
+            <form id="form-auth" method="post" name="form" action="javascript:void(0);">
                 <div class="form-group">
                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                 </div>
@@ -48,6 +44,7 @@
                 <button type="submit" class="btn btn-lg black p-x-lg">Войти</button>
                 <div id="otvet"></div>
             </form>
+
             <div class="m-y">
                 <a href="forgot-password.html" class="_600">Забыли пароль?</a>
             </div>
@@ -59,5 +56,28 @@
         </div>
     </div>
 </div>
+
+<script>
+    $( document ).ready(function() {
+        if ($("#form-auth").length > 0) {
+
+            $('#form-auth').submit(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/local/ajax/user/login.php",
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        if(data == "true"){
+                            location. reload()
+                        }else{
+                            $("#otvet").html(data);
+                        }
+                    },
+                });
+            });
+
+        }
+    });
+</script>
 
 <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/tmp/footer.php'?>
