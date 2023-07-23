@@ -5,6 +5,9 @@
 
     class User {
 
+        public static $ripMusic = "/upload/music/";
+        public static $ripPoster = "/upload/img/";
+
         public static function logout(){
             setcookie('email','', time()-3600, '/');
             setcookie('SESSID', '', time()-3600, '/');
@@ -116,6 +119,121 @@
             }
 
             return $otvet;
+        }
+
+        public static function musicUsers($limit){
+
+            $ripMusic = self::$ripMusic;
+            $ripPoster = self::$ripPoster;
+
+            global $db;
+            global $userArray;
+            $usrId = $userArray["id"];
+
+            $q = $db->query("SELECT * FROM music_profile WHERE user='$usrId'");
+            $music = $q->fetch_assoc();
+            if(!empty($music)){
+                while($r=$q->fetch_assoc()){
+                    $arr[]= array(
+                        "id" => $r["id"],
+                        "title" => $r["tytle"],
+                        "artist" => $r['autor'],
+                        "mp3" => $ripMusic.$r["url"],
+                        "poster" => $ripPoster.'music/'.$r["img"],
+                    );
+                }
+            }
+
+            $ob = new Favorite;
+            $musicAutor = $ob->favoriteArray("track");
+            if($musicAutor){
+                $arr = array_merge($musicAutor, $arr);
+            }
+
+            return $arr;
+
+        }
+
+    }
+
+    class Favorite {
+
+        public static function editFavorite($arrProfile){
+
+            global $db;
+            global $userArray;
+            $usrId = $userArray["id"];
+
+            if($arrProfile){
+                
+                $str = implode(",", $arrProfile);
+                $action = $db->query("UPDATE `user` SET likeMusic='$str' WHERE id='$usrId'");
+            
+            }
+
+        }
+
+        public static function typeFavoriteArray($type){
+
+            global $userArray; 
+
+            if($type == "album"){
+                $arr = $userArray["likeAlbum"];
+            }
+
+            if($type == "track"){
+                $arr = $userArray["likeMusic"];
+            }
+
+            if($arr){
+                $arr = explode(',', $arr);
+            }
+            
+
+            if(!is_array($arr)){
+                $arr = array();
+            }
+
+            return $arr;
+        }
+
+        public static function favorite($type, $id){
+
+            global $userArray;
+
+            $arr = static::typeFavoriteArray($type);
+
+            if(!empty($arr)){
+                $key = array_search($id, $arr);
+                if ($key == "") {
+                    $arr[] = $id;
+                }else{
+                    unset($arr[$key]);
+                }
+
+            }else{
+
+                $arr[] = $id;
+
+            }
+
+            $ob = new User;
+            $music = static::editFavorite($arr);
+
+        }
+
+        public static function favoriteArray($type){
+
+            global $db;
+            global $userArray;
+            $usrId = $userArray["id"];
+
+            $arr = static::typeFavoriteArray($type);
+
+            $ob = new Music; 
+            $music = $ob->musicArray($arr);
+
+            return $music ;
         }
 
     }
@@ -265,7 +383,7 @@
             $q = $db->query("SELECT * FROM music_autor ORDER BY id DESC LIMIT $limit");
             if($q) {
 
-                $arr = static::MusicItogArray($q);
+                $arr = static::sborkaMusic($arr);
 
             }
 
@@ -310,6 +428,31 @@
         public static function newMusic($limit){
 
             $arr = static::NewMusicArray($limit);
+            $music = array();
+
+            $music = static::sborkaMusic($arr);
+
+            return $music;
+        }
+
+        public static function musicArrayItog($id){
+
+            global $db;
+            $id = join(',', $id);
+
+            $q = $db->query("SELECT * FROM music_autor WHERE id IN ($id);");
+            if($q) {
+
+                $arr = static::MusicItogArray($q);
+
+            }
+
+            return $arr;
+        }
+
+        public static function musicArray($id){
+
+            $arr = static::musicArrayItog($id);
             $music = array();
 
             $music = static::sborkaMusic($arr);

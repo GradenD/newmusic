@@ -27,4 +27,19 @@ $( document ).ready(function() {
         });
     }
 
+    $(document).on("click", '.btn-favorite',function() {
+        var id = $(this).data("id");
+        var type = $(this).data("type");
+        $.ajax({
+            type: "POST",
+            url: "/local/ajax/user/favorite.php",
+            data: {
+                id: id,
+                type: type,
+            },
+            success: function (data) {
+            },
+        });
+    });
+
 });

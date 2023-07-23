@@ -1,6 +1,10 @@
 <?
     require_once $_SERVER["DOCUMENT_ROOT"].'/local/prolog.php';
     global $userArray;
+
+    $url = $_SERVER['REQUEST_URI'];
+    $url = explode('?', $url);
+    $url = $url[0];
 ?>
 <!doctype html>
 <html lang="ru">
@@ -73,9 +77,9 @@
                         
                         <ul class="nav" data-ui-nav>
                         <li class="nav-header hidden-folded">
-                            <span class="text-xs text-muted">Main</span>
+                            <span class="text-xs text-muted">Меню</span>
                         </li>
-                        <li>
+                        <?/*<li>
                             <a href="player.html">
                             <span class="nav-icon">
                                 <i class="material-icons">
@@ -84,83 +88,83 @@
                             </span>
                             <span class="nav-text">Discover</span>
                             </a>
-                        </li>
+                        </li>*/?>
                         <li>
-                            <a href="browse.html">
-                            <span class="nav-icon">
-                                <i class="material-icons">
-                                sort
-                                </i>
-                            </span>
-                            <span class="nav-text">Browse</span>
+                            <a href="/users/globals/tracks/">
+                                <span class="nav-icon">
+                                    <i class="material-icons">
+                                    sort
+                                    </i>
+                                </span>
+                                <span class="nav-text">Треки</span>
                             </a>
                         </li>
                         <li>
-                            <a href="chart.html">
-                            <span class="nav-icon">
-                                <i class="material-icons">
-                                trending_up
-                                </i>
-                            </span>
-                            <span class="nav-text">Charts</span>
+                            <a href="/users/globals/chart/">
+                                <span class="nav-icon">
+                                    <i class="material-icons">
+                                    trending_up
+                                    </i>
+                                </span>
+                                <span class="nav-text">Чарт</span>
                             </a>
                         </li>
                         <li>
                             <a href="artist.html">
-                            <span class="nav-icon">
-                                <i class="material-icons">
-                                portrait
-                                </i>
-                            </span>
-                            <span class="nav-text">Artist</span>
+                                <span class="nav-icon">
+                                    <i class="material-icons">
+                                    portrait
+                                    </i>
+                                </span>
+                                <span class="nav-text">Исполнители</span>
                             </a>
                         </li>
                         <li>
                             <a data-toggle="modal" data-target="#search-modal">
-                            <span class="nav-icon">
-                                <i class="material-icons">
-                                search
-                                </i>
-                            </span>
-                            <span class="nav-text">Search</span>
+                                <span class="nav-icon">
+                                    <i class="material-icons">
+                                    search
+                                    </i>
+                                </span>
+                                <span class="nav-text">Поиск</span>
                             </a>
                         </li>
                         
                         
                         <li class="nav-header hidden-folded m-t">
-                            <span class="text-xs text-muted">Your collection</span>
+                            <span class="text-xs text-muted">Моя коллекция</span>
                         </li>
                         <li>
                             <a href="profile.html#tracks">
-                            <span class="nav-label">
-                                <b class="label">8</b>
-                            </span>
-                            <span class="nav-icon">
-                                <i class="material-icons">
-                                list
-                                </i>
-                            </span>
-                            <span class="nav-text">Tracks</span>
+                                <?/*<span class="nav-label">
+                                    <b class="label">8</b>
+                                </span>*/?>
+                                <span class="nav-icon">
+                                    <i class="material-icons">
+                                    list
+                                    </i>
+                                </span>
+                                <span class="nav-text">Треки</span>
                             </a>
                         </li>
                         <li>
                             <a href="profile.html#playlists">
-                            <span class="nav-icon">
-                                <i class="material-icons">
-                                queue_music
-                                </i>
-                            </span>
-                            <span class="nav-text">Playlists</span>
+                                <span class="nav-icon">
+                                    <i class="material-icons">
+                                    queue_music
+                                    </i>
+                                </span>
+                                <span class="nav-text">Плейлист</span>
                             </a>
                         </li>
                         <li>
                             <a href="profile.html#likes">
-                            <span class="nav-icon">
-                                <i class="material-icons">
-                                favorite_border
-                                </i>
-                            </span>
-                            <span class="nav-text">Likes</span>
+                                <span class="nav-icon">
+                                    <i class="material-icons">
+                                    favorite_border
+                                    </i>
+                                </span>
+                                <span class="nav-text">Мне нравится</span>
                             </a>
                         </li>
                         </ul>
@@ -179,20 +183,20 @@
                         </a>
                         <div class="dropdown-menu w dropdown-menu-scale ">
                             <a class="dropdown-item" href="profile.html#profile">
-                            <span>Profile</span>
+                                <span>Profile</span>
                             </a>
                             <a class="dropdown-item" href="profile.html#tracks">
-                            <span>Tracks</span>
+                                <span>Tracks</span>
                             </a>
                             <a class="dropdown-item" href="profile.html#playlists">
-                            <span>Playlists</span>
+                                <span>Playlists</span>
                             </a>
                             <a class="dropdown-item" href="profile.html#likes">
-                            <span>Likes</span>
+                                <span>Likes</span>
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="docs.html">
-                            Need help?
+                                Need help?
                             </a>
                             <a class="dropdown-item" href="signin.html">Sign out</a>
                         </div>
@@ -236,3 +240,5 @@
         <div class="app-footer app-player grey bg">
             <div class="playlist" style="width:100%"></div>
         </div>
+
+        <div class="page-content">
