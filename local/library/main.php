@@ -154,6 +154,84 @@
 
         }
 
+        public static function saveProfile($post){
+
+            $name = $post["name"];
+            $lastName = $post["lastName"];
+
+            global $db;
+            global $userArray;
+            $usrId = $userArray["id"];
+
+            $otvet = array(
+                "MESSAGE" => "",
+                "STATUS" => false,
+            );
+
+            if($usrId){
+
+                $c=$db->query("UPDATE `user` SET name='$name', lastname='$lastName' WHERE id='$usrId' ");
+
+                $otvet["STATUS"] = true;
+                $otvet["MESSAGE"] = "Профиль сохранен!";
+
+            }else{
+
+                $otvet["MESSAGE"] = "Произошла ошибка";
+
+            }
+
+            return $otvet;
+        }
+
+        public static function changePasword($post){
+
+            $newPas = $post['new-password'];
+            $confirm = $post['new-password-confirm'];
+            $password = $post['old-password'];
+
+            $hash = md5($password);
+
+            global $db;
+            global $userArray;
+            $usrId = $userArray["id"];
+
+            $otvet = array(
+                "MESSAGE" => "",
+                "STATUS" => false,
+            );
+
+            if($usrId){
+
+                if($newPas == $confirm){
+
+                    if($hash == $userArray['password']){
+
+                        $new = md5($newPas);
+                        $c=$db->query("UPDATE `user` SET password='$new' WHERE id='$usrId' ");
+    
+                        $otvet["STATUS"] = true;
+                        $otvet["MESSAGE"] = "Профиль сохранен!";
+    
+                    }else{
+    
+                        $otvet["MESSAGE"] = "Пароль не верный!";
+    
+                    }
+
+                }else{
+                    $otvet["MESSAGE"] = "Пароли не совпадают!";
+                }
+
+            }else{
+
+                $otvet["MESSAGE"] = "Произошла ошибка";
+
+            }
+
+            return $otvet;
+        }
+
     }
 
     class Favorite {
@@ -291,6 +369,7 @@
 
         public static function sborkaMusic($arr){
 
+            $music = array();
             if($arr) {
 
                 $ripMusic = self::$ripMusic;
@@ -439,12 +518,15 @@
 
             global $db;
             $id = join(',', $id);
+            $arr = array();
 
-            $q = $db->query("SELECT * FROM music_autor WHERE id IN ($id);");
-            if($q) {
-
-                $arr = static::MusicItogArray($q);
-
+            if($id){
+                $q = $db->query("SELECT * FROM music_autor WHERE id IN ($id);");
+                if($q) {
+    
+                    $arr = static::MusicItogArray($q);
+    
+                }
             }
 
             return $arr;

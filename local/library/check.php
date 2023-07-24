@@ -12,18 +12,27 @@
         if($result){
             $usr=$result->fetch_assoc();
             if(!empty($usr)){
-                if($session==md5($email.$usr['password'])){
-                    $auth=true;
-                    if($usr['role'] == '1'){
-                        $admin=true;
-                    }
-                }
-                
+                $auth=true;
+                if($usr['role'] == '1'){
+                    $admin=true;
+                }             
             }
         }
     }
 
     if($auth){
+
+        $prifileName = "";
+        if($usr["lastname"]){
+            $prifileName = $usr["lastname"];
+        }
+
+        if($usr["name"]){
+            $prifileName = $prifileName.' '.$usr["name"];
+        }
+
+        $usr["prifileName"] = $prifileName;
+
         $userArray = $usr;
     }
 

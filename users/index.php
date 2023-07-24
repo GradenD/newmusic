@@ -1,5 +1,9 @@
 <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/tmp/headerProfile.php'?>
 
+<?
+    global $userArray;
+?>
+
 <!-- ############ PAGE START-->
 <div class="page-content">
     <div class="padding b-b">
@@ -7,14 +11,14 @@
             <div class="col-sm w w-auto-xs m-b">
             <div class="item w rounded">
                 <div class="item-media">
-                <div class="item-media-content" style="background-image: url('images/a3.jpg');"></div>
+                <div class="item-media-content" style="background-image: url('/images/a3.jpg');"></div>
                 </div>
             </div>
             </div>
             <div class="col-sm">
             <div class="p-l-md no-padding-xs">
                 <h1 class="page-title">
-                <span class="h1 _800">Rachel Platten</span>
+                <span class="h1 _800"><?=$userArray["prifileName"]?></span>
                 </h1>
                 <p class="item-desc text-ellipsis text-muted" data-ui-toggle-class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quamquam tu hanc copiosiorem etiam soles dicere. Nihil illinc huc pervenit. Verum hoc idem saepe faciamus. Quid ad utilitatem tantae pecuniae? Utram tandem linguam nescio? Sed hoc sane concedamus.</p>
                 <div class="item-action m-b">
@@ -36,16 +40,19 @@
             <div class="nav-active-border b-primary bottom m-b-md m-t">
                 <ul class="nav l-h-2x" data-ui-jp="taburl">
                     <li class="nav-item m-r inline">
-                        <a class="nav-link active" href="#" data-toggle="tab" data-target="#track">Tracks</a>
+                        <a class="nav-link active" href="#" data-toggle="tab" data-target="#track">Треки</a>
                     </li>
                     <li class="nav-item m-r inline">
-                        <a class="nav-link" href="#" data-toggle="tab" data-target="#playlist">Playlists</a>
+                        <a class="nav-link" href="#" data-toggle="tab" data-target="#playlist">Плейлисты</a>
                     </li>
                     <li class="nav-item m-r inline">
-                        <a class="nav-link" href="#" data-toggle="tab" data-target="#like">Likes</a>
+                        <a class="nav-link" href="#" data-toggle="tab" data-target="#like">Мне нравится</a>
                     </li>
                     <li class="nav-item m-r inline">
-                        <a class="nav-link" href="#" data-toggle="tab" data-target="#profile">Profile</a>
+                        <a class="nav-link" href="#" data-toggle="tab" data-target="#profile">Профиль</a>
+                    </li>
+                    <li class="nav-item m-r inline">
+                        <a class="nav-link" href="#" data-toggle="tab" data-target="#change-pasword">Смена пароля</a>
                     </li>
                 </ul>
             </div>
@@ -128,7 +135,7 @@
                         <div class="col-xs-4 col-sm-4 col-md-3">
                             <div class="item r" data-id="item-2" data-src="http://api.soundcloud.com/tracks/259445397/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
                                 <div class="item-media ">
-                                    <a href="track.detail.html" class="item-media-content" style="background-image: url('images/b1.jpg');"></a>
+                                    <a href="track.detail.html" class="item-media-content" style="background-image: url('/images/b1.jpg');"></a>
                                     <div class="item-overlay center">
                                         <button  class="btn-playpause">Play</button>
                                     </div>
@@ -166,7 +173,7 @@
                         <div class="col-xs-4 col-sm-4 col-md-3">
                             <div class="item r" data-id="item-10" data-src="http://api.soundcloud.com/tracks/237514750/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
                                 <div class="item-media ">
-                                    <a href="track.detail.html" class="item-media-content" style="background-image: url('images/b9.jpg');"></a>
+                                    <a href="track.detail.html" class="item-media-content" style="background-image: url('/images/b9.jpg');"></a>
                                     <div class="item-overlay center">
                                         <button  class="btn-playpause">Play</button>
                                     </div>
@@ -199,26 +206,60 @@
                 </div>
 
                 <div class="tab-pane" id="profile">
-                    <form>
-                    <div class="form-group row">
-                        <div class="col-sm-3 form-control-label text-muted">Location</div>
-                        <div class="col-sm-9"><input value="Earth" class="form-control"></div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-3 form-control-label text-muted">Website</div>
-                        <div class="col-sm-9"><input placeholder="http://" class="form-control"></div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-3 form-control-label text-muted">Music Type</div>
-                        <div class="col-sm-9">
-                        <select class="form-control c-select">
-                            <option>Blue</option>
-                            <option>Electro</option>
-                            <option>Pop</option>
-                            <option>Soul</option>
-                        </select>
+                    <form id="form-auth" method="post" action="javascript:void(0);">
+
+                        <div class="form-group row">
+                            <div class="col-sm-3 form-control-label text-muted">Имя</div>
+                            <div class="col-sm-9">
+                                <input type="text" placeholder="Имя" name="name" value="<?=$userArray["name"]?>" class="form-control">
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-3 form-control-label text-muted">Фамилия</div>
+                            <div class="col-sm-9">
+                                <input type="text" placeholder="Фамилия" name="lastName" value="<?=$userArray["lastname"]?>" class="form-control">
+                            </div>
+                        </div>
+
+                        <br>
+                        <button type="submit" class="btn btn-lg dark p-x-lg">Сохранить</button>
+                        <br>
+                        <div class="otvet"></div>
+
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="change-pasword">
+                    <form id="form-pasword" method="post" action="javascript:void(0);">
+
+                        <div class="form-group row">
+                            <div class="col-sm-3 form-control-label text-muted">Пароль</div>
+                            <div class="col-sm-9">
+                                <input type="password" placeholder="Пароль" name="new-password" class="form-control">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-3 form-control-label text-muted">Повторите пароль</div>
+                            <div class="col-sm-9">
+                                <input type="password" placeholder="Повторите пароль" name="new-password-confirm" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-3 form-control-label text-muted">Старый пароль</div>
+                            <div class="col-sm-9">
+                                <input type="password" placeholder="Старый пароль" name="old-password" class="form-control">
+                            </div>
+                        </div>
+
+                        <br>
+                        <button type="submit" class="btn btn-lg dark p-x-lg">Сохранить</button>
+                        <br>
+                        <div class="otvet"></div>
+
                     </form>
                 </div>
             </div>
@@ -233,7 +274,7 @@
       		    <div class="col-xs-12">
       		    	<div class="item r" data-id="item-3" data-src="http://api.soundcloud.com/tracks/79031167/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
       					<div class="item-media ">
-      						<a href="track.detail.html" class="item-media-content" style="background-image: url('images/b2.jpg');"></a>
+      						<a href="track.detail.html" class="item-media-content" style="background-image: url('/images/b2.jpg');"></a>
       					</div>
       					<div class="item-info">
       						<div class="item-title text-ellipsis">
@@ -250,7 +291,7 @@
       		    <div class="col-xs-12">
       		    	<div class="item r" data-id="item-1" data-src="http://api.soundcloud.com/tracks/269944843/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
       					<div class="item-media ">
-      						<a href="track.detail.html" class="item-media-content" style="background-image: url('images/b0.jpg');"></a>
+      						<a href="track.detail.html" class="item-media-content" style="background-image: url('/images/b0.jpg');"></a>
       					</div>
       					<div class="item-info">
       						<div class="item-title text-ellipsis">
@@ -267,7 +308,7 @@
       		    <div class="col-xs-12">
       		    	<div class="item r" data-id="item-12" data-src="http://api.soundcloud.com/tracks/174495152/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
       					<div class="item-media ">
-      						<a href="track.detail.html" class="item-media-content" style="background-image: url('images/b11.jpg');"></a>
+      						<a href="track.detail.html" class="item-media-content" style="background-image: url('/images/b11.jpg');"></a>
       					</div>
       					<div class="item-info">
       						<div class="item-title text-ellipsis">
@@ -284,7 +325,7 @@
       		    <div class="col-xs-12">
       		    	<div class="item r" data-id="item-11" data-src="http://api.soundcloud.com/tracks/218060449/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
       					<div class="item-media ">
-      						<a href="track.detail.html" class="item-media-content" style="background-image: url('images/b10.jpg');"></a>
+      						<a href="track.detail.html" class="item-media-content" style="background-image: url('/images/b10.jpg');"></a>
       					</div>
       					<div class="item-info">
       						<div class="item-title text-ellipsis">
@@ -301,7 +342,7 @@
       		    <div class="col-xs-12">
       		    	<div class="item r" data-id="item-6" data-src="http://api.soundcloud.com/tracks/236107824/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
       					<div class="item-media ">
-      						<a href="track.detail.html" class="item-media-content" style="background-image: url('images/b5.jpg');"></a>
+      						<a href="track.detail.html" class="item-media-content" style="background-image: url('/images/b5.jpg');"></a>
       					</div>
       					<div class="item-info">
       						<div class="item-title text-ellipsis">
@@ -372,5 +413,37 @@
 <!-- / .modal -->
 
 <!-- ############ PAGE END-->
+
+<script>
+
+    $( document ).ready(function() {
+
+        $(document).on("submit", '#form-auth',function() {
+            var form = $(this);
+            $.ajax({
+                type: "POST",
+                url: "/local/ajax/user/saveProfile.php",
+                data: $(this).serialize(),
+                success: function (data) {
+                    form.find(".otvet").html(data);
+                },
+            });
+        });
+
+        $(document).on("submit", '#form-pasword',function() {
+            var form = $(this);
+            $.ajax({
+                type: "POST",
+                url: "/local/ajax/user/changePasword.php",
+                data: $(this).serialize(),
+                success: function (data) {
+                    form.find(".otvet").html(data);
+                },
+            });
+        });
+
+    });
+
+</script>
 
 <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/tmp/footerProfile.php'?>
