@@ -2,6 +2,14 @@
 
 <?
     global $userArray;
+
+    $menu = "";
+    if(!empty($_GET["user"])){
+        $menu = $_GET["user"];
+    }
+
+    $ob = new User;
+    $musicCount = $ob->countUsersTrack();
 ?>
 
 <!-- ############ PAGE START-->
@@ -18,15 +26,16 @@
             <div class="col-sm">
             <div class="p-l-md no-padding-xs">
                 <h1 class="page-title">
-                <span class="h1 _800"><?=$userArray["prifileName"]?></span>
+                    <span class="h1 _800"><?=$userArray["prifileName"]?></span>
                 </h1>
                 <p class="item-desc text-ellipsis text-muted" data-ui-toggle-class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quamquam tu hanc copiosiorem etiam soles dicere. Nihil illinc huc pervenit. Verum hoc idem saepe faciamus. Quid ad utilitatem tantae pecuniae? Utram tandem linguam nescio? Sed hoc sane concedamus.</p>
                 <div class="item-action m-b">
-                <a href="#" class="btn btn-sm rounded primary">Upload</a>
-                <a href="#" class="btn btn-sm rounded white">Edit Profile</a>
+                    <a href="#" class="btn btn-sm rounded primary">Upload</a>
+                    <?/*<a href="#" class="btn btn-sm rounded white">Edit Profile</a>*/?>
                 </div>
                 <div class="block clearfix m-b">
-                <span>9</span> <span class="text-muted">Albums</span>, <span>23</span> <span class="text-muted">Tracks</span>
+                    <span>0</span> <span class="text-muted">Альбомов</span>, 
+                    <span><?=$musicCount?></span> <span class="text-muted">Треков</span>
                 </div>
             </div>
             </div>
@@ -40,25 +49,25 @@
             <div class="nav-active-border b-primary bottom m-b-md m-t">
                 <ul class="nav l-h-2x" data-ui-jp="taburl">
                     <li class="nav-item m-r inline">
-                        <a class="nav-link active" href="#" data-toggle="tab" data-target="#track">Треки</a>
+                        <a class="nav-link <?if($menu == "track"){?>active<?}?>" href="#" data-toggle="tab" data-target="#track">Треки</a>
                     </li>
                     <li class="nav-item m-r inline">
-                        <a class="nav-link" href="#" data-toggle="tab" data-target="#playlist">Плейлисты</a>
+                        <a class="nav-link <?if($menu == "playlist"){?>active<?}?>" href="#" data-toggle="tab" data-target="#playlist">Плейлисты</a>
                     </li>
                     <li class="nav-item m-r inline">
-                        <a class="nav-link" href="#" data-toggle="tab" data-target="#like">Мне нравится</a>
+                        <a class="nav-link <?if($menu == "like"){?>active<?}?>" href="#" data-toggle="tab" data-target="#like">Мне нравится</a>
                     </li>
                     <li class="nav-item m-r inline">
-                        <a class="nav-link" href="#" data-toggle="tab" data-target="#profile">Профиль</a>
+                        <a class="nav-link <?if($menu == "profile"){?>active<?}?>" href="#" data-toggle="tab" data-target="#profile">Профиль</a>
                     </li>
                     <li class="nav-item m-r inline">
-                        <a class="nav-link" href="#" data-toggle="tab" data-target="#change-pasword">Смена пароля</a>
+                        <a class="nav-link <?if($menu == "change-pasword"){?>active<?}?>" href="#" data-toggle="tab" data-target="#change-pasword">Смена пароля</a>
                     </li>
                 </ul>
             </div>
 
             <div class="tab-content">
-                <div class="tab-pane active" id="track">
+                <div class="tab-pane <?if($menu == "track"){?>active<?}?>" id="track">
                     <div class="row item-list item-list-by m-b">
                         <?
 
@@ -129,7 +138,7 @@
                     <a href="#" class="btn btn-sm white rounded">Show More</a>
                 </div>
 
-                <div class="tab-pane" id="playlist">
+                <div class="tab-pane <?if($menu == "playlist"){?>active<?}?>" id="playlist">
                     <div class="row m-b">
 
                         <div class="col-xs-4 col-sm-4 col-md-3">
@@ -167,7 +176,7 @@
                     </div>
                 </div>
 
-                <div class="tab-pane" id="like">
+                <div class="tab-pane <?if($menu == "like"){?>active<?}?>" id="like">
                     <div class="row m-b">
 
                         <div class="col-xs-4 col-sm-4 col-md-3">
@@ -205,7 +214,7 @@
                     </div>
                 </div>
 
-                <div class="tab-pane" id="profile">
+                <div class="tab-pane <?if($menu == "profile"){?>active<?}?>" id="profile">
                     <form id="form-auth" method="post" action="javascript:void(0);">
 
                         <div class="form-group row">
@@ -230,7 +239,7 @@
                     </form>
                 </div>
 
-                <div class="tab-pane" id="change-pasword">
+                <div class="tab-pane <?if($menu == "change-pasword"){?>active<?}?>" id="change-pasword">
                     <form id="form-pasword" method="post" action="javascript:void(0);">
 
                         <div class="form-group row">

@@ -135,7 +135,7 @@
                             <span class="text-xs text-muted">Моя коллекция</span>
                         </li>
                         <li>
-                            <a href="profile.html#tracks">
+                            <a href="/users/?user=track">
                                 <?/*<span class="nav-label">
                                     <b class="label">8</b>
                                 </span>*/?>
@@ -148,7 +148,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="profile.html#playlists">
+                            <a href="/users/?user=playlist">
                                 <span class="nav-icon">
                                     <i class="material-icons">
                                     queue_music
@@ -158,7 +158,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="profile.html#likes">
+                            <a href="/users/?user=like">
                                 <span class="nav-icon">
                                     <i class="material-icons">
                                     favorite_border
@@ -182,17 +182,17 @@
                             </span>
                         </a>
                         <div class="dropdown-menu w dropdown-menu-scale ">
-                            <a class="dropdown-item" href="profile.html#profile">
-                                <span>Profile</span>
+                            <a class="dropdown-item" href="/users/?user=profile">
+                                <span>Профиль</span>
                             </a>
-                            <a class="dropdown-item" href="profile.html#tracks">
-                                <span>Tracks</span>
+                            <a class="dropdown-item" href="/users/?user=track">
+                                <span>Треки</span>
                             </a>
-                            <a class="dropdown-item" href="profile.html#playlists">
-                                <span>Playlists</span>
+                            <a class="dropdown-item" href="/users/">
+                                <span>Плейлисты</span>
                             </a>
-                            <a class="dropdown-item" href="profile.html#likes">
-                                <span>Likes</span>
+                            <a class="dropdown-item" href="/users/?user=like">
+                                <span>Мне нравится</span>
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="docs.html">

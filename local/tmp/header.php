@@ -95,16 +95,16 @@
                                             </span>
                                         </a>
                                         <div class="dropdown-menu w dropdown-menu-scale pull-right">
-                                            <a class="dropdown-item" href="/users/">
+                                            <a class="dropdown-item" href="/users/?user=profile">
                                                 <span>Профиль</span>
                                             </a>
-                                            <a class="dropdown-item" href="profile.html#tracks">
+                                            <a class="dropdown-item" href="/users/?user=track">
                                                 <span>Треки</span>
                                             </a>
-                                            <a class="dropdown-item" href="profile.html#playlists">
+                                            <a class="dropdown-item" href="/users/?user=playlist">
                                                 <span>Плейлист</span>
                                             </a>
-                                            <a class="dropdown-item" href="profile.html#likes">
+                                            <a class="dropdown-item" href="/users/?user=like">
                                                 <span>Мне нравится</span>
                                             </a>
                                             <div class="dropdown-divider"></div>

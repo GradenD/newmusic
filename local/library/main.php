@@ -232,6 +232,26 @@
             return $otvet;
         }
 
+        public static function countUsersTrack(){
+
+            global $db;
+            global $userArray;
+            $usrId = $userArray["id"];
+
+            $q = $db->query("SELECT * FROM music_profile WHERE user='$usrId'");
+
+            $count = $q->num_rows;
+
+            $ob = new Favorite;
+            $musicAutor = $ob->favoriteArray("track");
+            if(is_array($musicAutor)){
+                $x = count($musicAutor);
+                $count = $count + $x;
+            }
+
+            return $count;
+        }
+
     }
 
     class Favorite {
