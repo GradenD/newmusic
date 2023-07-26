@@ -129,6 +129,7 @@
             global $db;
             global $userArray;
             $usrId = $userArray["id"];
+            $arr = array();
 
             $q = $db->query("SELECT * FROM music_profile WHERE user='$usrId'");
             $music = $q->fetch_assoc();
@@ -148,6 +149,39 @@
             $musicAutor = $ob->favoriteArray("track");
             if($musicAutor){
                 $arr = array_merge($musicAutor, $arr);
+            }
+
+            return $arr;
+
+        }
+
+        public static function albumUsers($limit){
+
+            $ripMusic = self::$ripMusic;
+            $ripPoster = self::$ripPoster;
+
+            global $db;
+            global $userArray;
+            $usrId = $userArray["id"];
+            $arr = array();
+
+            $q = $db->query("SELECT * FROM album_user WHERE user='$usrId'");
+            if($q) {
+                while($r=$q->fetch_assoc()){
+                    $arr[]=$r;
+                }
+            }
+
+            $ob = new Favorite;
+            $musicAutor = $ob->favoriteArray("album");
+            
+            if($musicAutor){
+
+                $arrNew = array_merge($musicAutor["albom"], $arr);
+                $musicAutor["albom"] = $arrNew;
+
+                $arr = $musicAutor;
+
             }
 
             return $arr;
@@ -252,11 +286,32 @@
             return $count;
         }
 
+        public static function countUsersAlbum(){
+
+            global $db;
+            global $userArray;
+            $usrId = $userArray["id"];
+
+            $q = $db->query("SELECT * FROM album_user WHERE user='$usrId'");
+
+            $count = $q->num_rows;
+
+            $ob = new Favorite;
+            $musicAutor = $ob->favoriteArray("album");
+            if(is_array($musicAutor)){
+                $x = count($musicAutor);
+                $count = $count + $x;
+            }
+
+            return $count;
+
+        }
+
     }
 
     class Favorite {
 
-        public static function editFavorite($arrProfile){
+        public static function editFavorite($type, $arrProfile){
 
             global $db;
             global $userArray;
@@ -265,7 +320,14 @@
             if($arrProfile){
                 
                 $str = implode(",", $arrProfile);
-                $action = $db->query("UPDATE `user` SET likeMusic='$str' WHERE id='$usrId'");
+
+                if($type == "track"){
+                    $action = $db->query("UPDATE `user` SET likeMusic='$str' WHERE id='$usrId'");
+                }
+
+                if($type == "album"){
+                    $action = $db->query("UPDATE `user` SET likeAlbum='$str' WHERE id='$usrId'");
+                }
             
             }
 
@@ -316,7 +378,7 @@
             }
 
             $ob = new User;
-            $music = static::editFavorite($arr);
+            $music = static::editFavorite($type, $arr);
 
         }
 
@@ -328,8 +390,15 @@
 
             $arr = static::typeFavoriteArray($type);
 
-            $ob = new Music; 
-            $music = $ob->musicArray($arr);
+            if($type == "track"){
+                $ob = new Music; 
+                $music = $ob->musicArray($arr);
+            }
+
+            if($type == "album"){
+                $ob = new Album; 
+                $music = $ob->AlbumId($arr);
+            }
 
             return $music ;
         }
@@ -353,6 +422,24 @@
         public static function NewAlbum($l){
             global $db;
             $q = $db->query("SELECT * FROM album WHERE new=1 LIMIT $l");
+            if($q) {
+                while($r=$q->fetch_assoc()){
+                    $albom[]=$r;
+                    $autor[] = $r["autor"];
+                } 
+            }
+
+            $arr = static::AlbumItogArray($albom, $autor);
+
+            return $arr;
+        }
+
+        public static function AlbumId($user){
+            global $db;
+
+            $id = join(',', $user);
+            $q = $db->query("SELECT * FROM album WHERE id IN ($id);");
+
             if($q) {
                 while($r=$q->fetch_assoc()){
                     $albom[]=$r;
@@ -482,7 +569,7 @@
             $q = $db->query("SELECT * FROM music_autor ORDER BY id DESC LIMIT $limit");
             if($q) {
 
-                $arr = static::sborkaMusic($arr);
+                $arr = static::MusicItogArray($q);
 
             }
 
@@ -555,6 +642,7 @@
         public static function musicArray($id){
 
             $arr = static::musicArrayItog($id);
+
             $music = array();
 
             $music = static::sborkaMusic($arr);
