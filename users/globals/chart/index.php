@@ -27,7 +27,7 @@
             </div>
 
 
-            <div class="row item-list item-list-md item-list-li m-b">
+            <div class="row item-list item-list-md item-list-li m-b mep-playlist" aria-label="Audio Player">
 
                 <?        
                     $ob = new Music;
@@ -35,11 +35,14 @@
 
                     if($treading){
 
+                        global $playlist;
+                        $playlist = $treading;
+
                         foreach ($treading as $key => $value) {
                             ?>
 
                                 <div class="col-xs-12">
-                                    <div class="item r" data-id="<?=$key?>" data-src="<?=$value["mp3"]?>">
+                                    <div class="item r mep-track" data-id="<?=$value["id"]?>" data-src="<?=$value["mp3"]?>">
                                         <div class="item-media ">
                                             <a href="track.detail.html" class="item-media-content" style="background-image: url('<?=$value["poster"]?>');"></a>
                                             <div class="item-overlay center">

@@ -9,22 +9,11 @@
           <i class="fa fa-gear text-muted"></i>
         </a>
         <div class="box-header">
-          <strong>Theme Switcher</strong>
+          <strong>Настрйоки темы</strong>
         </div>
         <div class="box-divider"></div>
         <div class="box-body">
-          <p id="settingLayout" class="hidden-md-down">
-            <label class="md-check m-y-xs" data-target="folded">
-              <input type="checkbox">
-              <i class="green"></i>
-              <span>Folded Aside</span>
-            </label>
-            <label class="m-y-xs pointer" data-ui-fullscreen data-target="fullscreen">
-              <span class="fa fa-expand fa-fw m-r-xs"></span>
-              <span>Fullscreen Mode</span>
-            </label>
-          </p>
-          <p>Colors:</p>
+          <p>Цвет:</p>
           <p data-target="color">
             <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
               <input type="radio" name="color" value="primary">
@@ -59,7 +48,7 @@
               <i class="danger"></i>
             </label>
           </p>
-          <p>Themes:</p>
+          <p>Тема:</p>
           <div data-target="bg" class="text-u-c text-center _600 clearfix">
             <label class="p-a col-xs-3 light pointer m-a-0">
               <input type="radio" name="theme" value="" hidden>
@@ -258,6 +247,25 @@
       </div>
     </div>
 
+    <!-- Modal -->
+<div class="modal fade" id="addPlaylistTrack" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Добавить трек в плейлист</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="playlistScript"></div>
+
 <!-- build:js js/app.min.js -->
 <!-- Bootstrap -->
   <script src="/local/tmp/libs/tether/dist/js/tether.min.js"></script>
@@ -272,7 +280,7 @@
 
   <script src="/local/tmp/libs/mediaelement/build/mediaelement-and-player.min.js"></script>
   <script src="/local/tmp/libs/mediaelement/build/mep.js"></script>
-  <script src="/local/tmp/js/player.js"></script>
+  <?/*<script src="/local/tmp/js/player.js"></script>*/?>
 
   <script src="/local/tmp/libs/screenfull/dist/screenfull.min.js"></script>
   <script src="/local/tmp/js/config.lazyload.js"></script>
@@ -289,7 +297,8 @@
   <script src="/local/tmp/js/app.js"></script>
   <script src="/local/tmp/js/site.js"></script>
   <script src="/local/tmp/js/ajax.js"></script>
-  <script src="/local/tmp/js/main.js"></script>
 <!-- endbuild -->
+
+  <script src="/local/tmp/js/main.js"></script>
 </body>
 </html>

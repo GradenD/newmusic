@@ -1,5 +1,10 @@
 <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/tmp/header.php'?>
 
+<?
+    global $userArray;
+    if(!$userArray){
+?>
+
 <div class="content-center d-flex">
 
     <div class="padding">
@@ -74,7 +79,7 @@
                     data: $(this).serialize(),
                     success: function (data) {
                         if(data == "true"){
-                            location. reload()
+                            location.reload();
                         }else{
                             $("#otvet").html(data);
                         }
@@ -85,5 +90,45 @@
         }
     });
 </script>
+
+<?
+    }else{
+        ?>
+
+div class="content-center d-flex">
+
+<div class="padding">
+    <div class="navbar">
+    <div class="pull-center">
+        <!-- brand -->
+        <a href="/" class="navbar-brand md">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="32" height="32">
+                <circle cx="24" cy="24" r="24" fill="rgba(255,255,255,0.2)"/>
+                <circle cx="24" cy="24" r="22" fill="#1c202b" class="brand-color"/>
+                <circle cx="24" cy="24" r="10" fill="#ffffff"/>
+                <circle cx="13" cy="13" r="2"  fill="#ffffff" class="brand-animate"/>
+                <path d="M 14 24 L 24 24 L 14 44 Z" fill="#FFFFFF" />
+                <circle cx="24" cy="24" r="3" fill="#000000"/>
+            </svg>
+        
+            <img src="images/logo.png" alt="." class="hide">
+            <span class="hidden-folded inline"><?=$logoTitle?></span>
+        </a>
+        <!-- / brand -->
+    </div>
+    </div>
+</div>
+<div class="b-t">
+    <div class="center-block w-xxl w-auto-xs p-y-md text-center">
+    <div class="p-a-md">
+        <div>Вы зарегистрированы!<a href="/" class="text-primary _600"> Главная</a></div>
+    </div>
+    </div>
+</div>
+
+</div>
+        <?
+    }
+?>
 
 <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/tmp/footer.php'?>

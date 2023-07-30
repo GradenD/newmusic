@@ -16,11 +16,19 @@
 							<?
 								foreach ($new["albom"] as $key => $value) {
 									$autor = $new["autor"][$value["autor"]];
+
+									$typeId = "id";
+									if(!empty($value["type"])){
+										if($value["type"]){
+											$typeId = "idUser";
+										}
+									}
+
 									?>
-										<div class="item r" data-id="item-115" data-src="http://api.soundcloud.com/tracks/239793212/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
+										<div class="item r">
 
 											<div class="item-media primary">
-												<a href="track.detail.html" class="item-media-content" style="background-image: url('images/albums/<?=$value["img"]?>');"></a>
+												<a href="/users/globals/playlist/?<?=$typeId?>=<?=$value["id"]?>" class="item-media-content" style="background-image: url('<?=$value["img"]?>');"></a>
 												<div class="item-overlay center">
 													<button class="btn-playpause">Play</button>
 												</div>
@@ -29,14 +37,14 @@
 											<div class="item-info">
 												<div class="item-overlay bottom text-right">
 													<span data-type="album" data-id="<?=$value["id"]?>" class="btn-favorite"><i class="fa fa-heart-o"></i></span>
-													<a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
+													<a href="#" data-id="<?=$value["id"]?>" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
 													<div class="dropdown-menu pull-right black lt"></div>
 												</div>
 												<div class="item-title text-ellipsis">
-													<a href="track.detail.html">Новый альбом от <?=$autor["name"]?></a>
+													<a href="/users/globals/playlist/?<?=$typeId?>=<?=$value["id"]?>">Новый альбом от <?=$autor["name"]?></a>
 												</div>
 												<div class="item-author text-sm text-ellipsis">
-													<a href="artist.detail.html" class="text-muted"><?=$autor["name"]?></a>
+													<a href="/users/globals/playlist/?<?=$typeId?>=<?=$value["id"]?>" class="text-muted"><?=$autor["name"]?></a>
 												</div>
 											</div>
 											
@@ -58,11 +66,19 @@
 			if($IndexAlbum){
 				foreach ($IndexAlbum["albom"] as $key => $value) {
 					$autor = $IndexAlbum["autor"][$value["autor"]];
+
+					$typeId = "id";
+					if(!empty($value["type"])){
+						if($value["type"]){
+							$typeId = "idUser";
+						}
+					}
+
 					?>
 						<div class="col-sm-3 col-xs-6">
 							<div class="item r" data-id="item-1" data-src="http://api.soundcloud.com/tracks/269944843/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
 								<div class="item-media ">
-									<a href="track.detail.html" class="item-media-content" style="background-image: url('images/albums/<?=$value["img"]?>');"></a>
+									<a href="/users/globals/playlist/?<?=$typeId?>=<?=$value["id"]?>" class="item-media-content" style="background-image: url('<?=$value["img"]?>');"></a>
 									<div class="item-overlay center">
 										<button  class="btn-playpause">Play</button>
 									</div>
@@ -70,14 +86,14 @@
 								<div class="item-info">
 									<div class="item-overlay bottom text-right">
 										<span data-type="album" data-id="<?=$value["id"]?>" class="btn-favorite"><i class="fa fa-heart-o"></i></span>
-										<a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
+										<a href="#" data-id="<?=$value["id"]?>" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
 										<div class="dropdown-menu pull-right black lt"></div>
 									</div>
 									<div class="item-title text-ellipsis">
-										<a href="track.detail.html"><?=$value["tytle"]?></a>
+										<a href="/users/globals/playlist/?<?=$typeId?>=<?=$value["id"]?>"><?=$value["tytle"]?></a>
 									</div>
 									<div class="item-author text-sm text-ellipsis ">
-										<a href="artist.detail.html" class="text-muted"><?=$autor["name"]?></a>
+										<a href="/users/globals/playlist/?<?=$typeId?>=<?=$value["id"]?>" class="text-muted"><?=$autor["name"]?></a>
 									</div>
 					
 					
@@ -101,7 +117,7 @@
   	<div class="row-col">
     	<div class="col-lg-9 b-r no-border-md">
       		<div class="padding">
-        		<h2 class="widget-title h4 m-b">Treading</h2>
+        		<h2 class="widget-title h4 m-b">В тренде</h2>
 				<?
 					if($treading){
 						?>
@@ -120,7 +136,7 @@
 													<div class="item-info">
 														<div class="item-overlay bottom text-right">
 															<span data-type="track" data-id="<?=$value["id"]?>" class="btn-favorite"><i class="fa fa-heart-o"></i></span>
-															<a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
+															<a href="#" data-id="<?=$value["id"]?>" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
 															<div class="dropdown-menu pull-right black lt"></div>
 														</div>
 														<div class="item-title text-ellipsis">
@@ -147,7 +163,7 @@
 		?>
 
 
-        <h2 class="widget-title h4 m-b">New</h2>
+        <h2 class="widget-title h4 m-b">Новинки</h2>
         <div class="row">
 			<?
 				if($newMusic){
@@ -164,7 +180,7 @@
 									<div class="item-info">
 										<div class="item-overlay bottom text-right">
 											<span data-type="track" data-id="<?=$value["id"]?>" class="btn-favorite"><i class="fa fa-heart-o"></i></span>
-											<a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
+											<a href="#" data-id="<?=$value["id"]?>" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
 											<div class="dropdown-menu pull-right black lt"></div>
 										</div>
 										<div class="item-title text-ellipsis">
@@ -183,7 +199,51 @@
         </div>
 
 
-		<div data-blockrecomend class="d-flex block-column"></div>
+		<div class="d-flex block-column">
+		<div class="d-flex block-column">
+
+<h2 class="widget-title h4 m-b">Рекомендуют</h2>
+<div class="row item-list item-list-md m-b mep-playlist-data mep-playlist">
+	<?
+		$ob = new Music;
+		$recomend = $ob->recomend(10);
+		//dump($recomend);
+		if($recomend){
+			foreach ($recomend as $key => $value) {
+				?>
+					<div class="col-sm-6">
+						<div class="item r mep-track" data-id="item-<?=$key?>" data-src="<?=$value["mp3"]?>">
+							<div class="item-media ">
+								<a href="track.detail.html" class="item-media-content" style="background-image: url('<?=$value["poster"]?>');"></a>
+								<div class="item-overlay center">
+									<button  class="btn-playpause">Play</button>
+								</div>
+							</div>
+							<div class="item-info">
+								<div class="item-overlay bottom text-right">
+									<a href="javascript:void(0);" data-type="track" data-id="item-<?=$value["id"]?>" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
+									<a href="#" class="btn-more" data-id="<?=$value["id"]?>" data-autor="<?=$value["typeTrack"]?>" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
+									<div class="dropdown-menu pull-right black lt"></div>
+								</div>
+								<div class="item-title text-ellipsis">
+									<a href="track.detail.html"><?=$value["title"]?></a>
+								</div>
+								<div class="item-author text-sm text-ellipsis ">
+									<a href="artist.detail.html" class="text-muted"><?=$value["artist"]["name"]?></a>
+								</div>
+				
+				
+							</div>
+						</div>
+					</div>
+				<?
+			}
+		}
+	?>
+</div>
+
+</div>
+		</div>
 
       </div>
     </div>

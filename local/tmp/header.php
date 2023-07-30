@@ -44,7 +44,7 @@
   <!-- endbuild -->
 </head>
 <body class="black" data-ui-class="black">
-    <div class="app dk" id="app">
+    <div class="app dk <?if(!$userArray){?>hidde-auto<?}?>" id="app">
 
         <div id="content" class="app-content white bg" role="main">
             <div class="app-header white lt box-shadow-z1">
@@ -95,7 +95,7 @@
                                             </span>
                                         </a>
                                         <div class="dropdown-menu w dropdown-menu-scale pull-right">
-                                            <a class="dropdown-item" href="/users/?user=profile">
+                                            <a class="dropdown-item profile-url" href="/users/?user=profile">
                                                 <span>Профиль</span>
                                             </a>
                                             <a class="dropdown-item" href="/users/?user=track">
@@ -133,23 +133,23 @@
                         <!-- link and dropdown -->
                         <ul class="nav navbar-nav nav-md inline text-primary-hover" data-ui-nav>
                             <li class="nav-item">
-                                <a href="home.html" class="nav-link">
+                                <a href="/" class="nav-link">
                                 <span class="nav-text">Главное</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="browse.html" class="nav-link">
-                                <span class="nav-text">Популярное</span>
+                                <a href="/users/globals/chart/" class="nav-link">
+                                    <span class="nav-text">Популярное</span>
                                 </a>
                             </li>
                             <li class="nav-item dropdown pos-stc">
-                                <a href="chart.html" class="nav-link">
-                                <span class="nav-text">Чарт</span>
+                                <a href="/users/globals/chart/" class="nav-link">
+                                    <span class="nav-text">Чарт</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="artist.html" class="nav-link">
-                                <span class="nav-text">Исполнители</span>
+                                <a href="/users/globals/playlist/" class="nav-link">
+                                <span class="nav-text">Альбомы</span>
                                 </a>
                             </li>
                         </ul>

@@ -44,4 +44,6 @@
             header("Location: /index.php");
         }
     }
+
+    global $playlist; 
 ?>

@@ -14,7 +14,7 @@
 ?>
 
 <!-- ############ PAGE START-->
-<div class="page-content">
+<div data-page class="page-content">
     <div class="padding b-b">
         <div class="row-col">
             <div class="col-sm w w-auto-xs m-b">
@@ -29,11 +29,11 @@
                 <h1 class="page-title">
                     <span class="h1 _800"><?=$userArray["prifileName"]?></span>
                 </h1>
-                <p class="item-desc text-ellipsis text-muted" data-ui-toggle-class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quamquam tu hanc copiosiorem etiam soles dicere. Nihil illinc huc pervenit. Verum hoc idem saepe faciamus. Quid ad utilitatem tantae pecuniae? Utram tandem linguam nescio? Sed hoc sane concedamus.</p>
+                <?/*<p class="item-desc text-ellipsis text-muted" data-ui-toggle-class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quamquam tu hanc copiosiorem etiam soles dicere. Nihil illinc huc pervenit. Verum hoc idem saepe faciamus. Quid ad utilitatem tantae pecuniae? Utram tandem linguam nescio? Sed hoc sane concedamus.</p>
                 <div class="item-action m-b">
                     <a href="#" class="btn btn-sm rounded primary">Upload</a>
-                    <?/*<a href="#" class="btn btn-sm rounded white">Edit Profile</a>*/?>
-                </div>
+                    <a href="#" class="btn btn-sm rounded white">Edit Profile</a>
+                </div>*/?>
                 <div class="block clearfix m-b">
                     <span><?=$albumCount?></span> <span class="text-muted">Альбомов</span>, 
                     <span><?=$musicCount?></span> <span class="text-muted">Треков</span>
@@ -48,251 +48,58 @@
         <div class="padding p-y-0 m-b-md">
 
             <div class="nav-active-border b-primary bottom m-b-md m-t">
-                <ul class="nav l-h-2x" data-ui-jp="taburl">
+                <ul data-menu class="nav l-h-2x" data-ui-jp="taburl">
                     <li class="nav-item m-r inline">
-                        <a class="nav-link <?if($menu == "track"){?>active<?}?>" href="#" data-toggle="tab" data-target="#track">Треки</a>
+                        <a class="nav-link <?if($menu == "track"){?>active<?}?>" href="javascript:void(0)" data-menu data-toggle="tab" data-target="#track">Треки</a>
                     </li>
                     <li class="nav-item m-r inline">
-                        <a class="nav-link <?if($menu == "playlist"){?>active<?}?>" href="#" data-toggle="tab" data-target="#playlist">Плейлисты</a>
+                        <a class="nav-link <?if($menu == "playlist"){?>active<?}?>" href="javascript:void(0)" data-menu data-toggle="tab" data-target="#playlist">Плейлисты</a>
                     </li>
                     <li class="nav-item m-r inline">
-                        <a class="nav-link <?if($menu == "like"){?>active<?}?>" href="#" data-toggle="tab" data-target="#like">Мне нравится</a>
+                        <a class="nav-link <?if($menu == "like"){?>active<?}?>" href="javascript:void(0)" data-menu data-toggle="tab" data-target="#like">Мне нравится</a>
                     </li>
                     <li class="nav-item m-r inline">
-                        <a class="nav-link <?if($menu == "profile"){?>active<?}?>" href="#" data-toggle="tab" data-target="#profile">Профиль</a>
+                        <a class="nav-link <?if($menu == "upload"){?>active<?}?>" href="javascript:void(0)" data-menu data-toggle="tab" data-target="#upload">Загрузить трек</a>
                     </li>
                     <li class="nav-item m-r inline">
-                        <a class="nav-link <?if($menu == "change-pasword"){?>active<?}?>" href="#" data-toggle="tab" data-target="#change-pasword">Смена пароля</a>
+                        <a class="nav-link <?if($menu == "add-playlist"){?>active<?}?>" href="javascript:void(0)" data-menu data-toggle="tab" data-target="#add-playlist">Создать плейлист</a>
+                    </li>
+                    <li class="nav-item m-r inline">
+                        <a class="nav-link <?if($menu == "profile"){?>active<?}?>" href="javascript:void(0)" data-menu data-toggle="tab" data-target="#profile">Профиль</a>
+                    </li>
+                    <li class="nav-item m-r inline">
+                        <a class="nav-link <?if($menu == "change-pasword"){?>active<?}?>" href="javascript:void(0)" data-menu data-toggle="tab" data-target="#change-pasword">Смена пароля</a>
                     </li>
                 </ul>
             </div>
 
-            <div class="tab-content">
+            <div class="tab-content" data-tab>
                 <div class="tab-pane <?if($menu == "track"){?>active<?}?>" id="track">
-                    <div class="row item-list item-list-by m-b">
-                        <?
-
-                            $ob = new User;
-                            $music = $ob->musicUsers(10);
-
-                            if($music){
-
-                                foreach ($music as $key => $value) {
-                                   // dump($value);
-                                    if(is_array($value['artist'])){
-                                        $artist = $value['artist']['name'];
-                                    }else{
-                                        $artist = $value['artist'];
-                                    }
-                                    ?>
-                                        <div class="col-xs-12">            
-                                            <div class="item r" data-id="<?=$value["id"]?>" data-src="<?=$value["mp3"]?>">
-                                                <div class="item-media ">
-                                                    <a href="track.detail.html" class="item-media-content" style="background-image: url('<?=$value["poster"]?>');"></a>
-                                                    <div class="item-overlay center">
-                                                        <button  class="btn-playpause">Play</button>
-                                                    </div>
-                                                </div>
-                                                <div class="item-info">
-                                                    <div class="item-overlay bottom text-right">
-                                                        <a href="#" class="btn-favorite">
-                                                            <i class="fa fa-heart-o"></i>
-                                                        </a>
-                                                        <a href="#" class="btn-more" data-toggle="dropdown">
-                                                            <i class="fa fa-ellipsis-h"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu pull-right black lt"></div>
-                                                    </div>
-                                                    <div class="item-title text-ellipsis">
-                                                        <a href="track.detail.html"> <?=$artist?> - <?=$value['title']?></a>
-                                                    </div>
-                                                    <div class="item-author text-sm text-ellipsis hide">
-                                                        <a href="artist.detail.html" class="text-muted">Postiljonen</a>
-                                                    </div>
-                                                    <div class="item-meta text-sm text-muted">
-                                                        <span class="item-meta-category">
-                                                            <a href="browse.html" class="label">Soul</a>
-                                                        </span>
-                                                        <span class="item-meta-date text-xs">02.04.2016</span>
-                                                    </div>
-                                    
-                                                    <div class="item-except visible-list text-sm text-muted h-2x m-t-sm">
-                                                        Litatem tantae pecuniae? Utram tandem linguam nescio? Sed hoc sane concedamus.
-                                                    </div>
-                                    
-                                                    <div class="item-action visible-list m-t-sm">
-                                                        <a href="#" class="btn btn-xs white">Edit</a>
-                                                        <a href="#" class="btn btn-xs white" data-toggle="modal" data-target="#delete-modal">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?
-
-                                }
-
-                            }
-
-                        ?>
-
-                    </div>
-                    <a href="#" class="btn btn-sm white rounded">Show More</a>
+                    <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/action/users/track.php'?>
                 </div>
 
                 <div class="tab-pane <?if($menu == "playlist"){?>active<?}?>" id="playlist">
-                    <div class="row m-b">
-                        <?
-                            $ob = new USer;
-                            $music = $ob->albumUsers(10);
-                            if($music){
-                                foreach ($music["albom"] as $key => $value) {
-                                    $autor = "";
-                                    if(empty($music["autor"])){
-                                        if(is_array($music["autor"][$value["autor"]])){
-                                            $autor = $music["autor"][$value["autor"]];
-                                        }
-                                    }
-                                    ?>
-
-                                        <div class="col-xs-4 col-sm-4 col-md-3">
-                                            <div class="item r" data-id="item-2" data-src="http://api.soundcloud.com/tracks/259445397/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
-                                                <div class="item-media ">
-                                                    <a href="track.detail.html" class="item-media-content" style="background-image: url('/images/albums/<?=$value["img"]?>"></a>
-                                                    <div class="item-overlay center">
-                                                        <button  class="btn-playpause">Play</button>
-                                                    </div>
-                                                </div>
-                                                <div class="item-info">
-                                                    <div class="item-overlay bottom text-right">
-                                                        <a href="#" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
-                                                        <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu pull-right black lt"></div>
-                                                    </div>
-                                                    <div class="item-title text-ellipsis">
-                                                        <a href="track.detail.html"><?=$value["tytle"]?></a>
-                                                    </div>
-                                                    <?
-                                                        if($autor){
-                                                            ?>
-                                                                <div class="item-author text-sm text-ellipsis hide">
-                                                                    <a href="artist.detail.html" class="text-muted"><?=$autor["name"]?></a>
-                                                                </div>
-                                                            <?
-                                                        }
-                                                    ?>
-                                                    <div class="item-meta text-sm text-muted">
-                                                    <span class="item-meta-stats text-xs ">
-                                                        <i class="fa fa-play text-muted"></i> 30 
-                                                        <i class="fa fa-heart m-l-sm text-muted"></i> 10
-                                                    </span>
-                                                    </div>
-                                    
-                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?
-                                }
-                            }
-                        ?>
-
-                    </div>
+                    <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/action/users/playlist.php'?>
                 </div>
 
                 <div class="tab-pane <?if($menu == "like"){?>active<?}?>" id="like">
-                    <div class="row m-b">
-
-                        <div class="col-xs-4 col-sm-4 col-md-3">
-                            <div class="item r" data-id="item-10" data-src="http://api.soundcloud.com/tracks/237514750/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
-                                <div class="item-media ">
-                                    <a href="track.detail.html" class="item-media-content" style="background-image: url('/images/b9.jpg');"></a>
-                                    <div class="item-overlay center">
-                                        <button  class="btn-playpause">Play</button>
-                                    </div>
-                                </div>
-                                <div class="item-info">
-                                    <div class="item-overlay bottom text-right">
-                                        <a href="#" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
-                                        <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
-                                        <div class="dropdown-menu pull-right black lt"></div>
-                                    </div>
-                                    <div class="item-title text-ellipsis">
-                                        <a href="track.detail.html">The Open Road</a>
-                                    </div>
-                                    <div class="item-author text-sm text-ellipsis hide">
-                                        <a href="artist.detail.html" class="text-muted">Postiljonen</a>
-                                    </div>
-                                    <div class="item-meta text-sm text-muted">
-                                    <span class="item-meta-stats text-xs ">
-                                        <i class="fa fa-play text-muted"></i> 860 
-                                        <i class="fa fa-heart m-l-sm text-muted"></i> 240
-                                    </span>
-                                    </div>
-                    
-                    
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                    <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/action/users/like.php'?>
                 </div>
 
                 <div class="tab-pane <?if($menu == "profile"){?>active<?}?>" id="profile">
-                    <form id="form-auth" method="post" action="javascript:void(0);">
-
-                        <div class="form-group row">
-                            <div class="col-sm-3 form-control-label text-muted">Имя</div>
-                            <div class="col-sm-9">
-                                <input type="text" placeholder="Имя" name="name" value="<?=$userArray["name"]?>" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-3 form-control-label text-muted">Фамилия</div>
-                            <div class="col-sm-9">
-                                <input type="text" placeholder="Фамилия" name="lastName" value="<?=$userArray["lastname"]?>" class="form-control">
-                            </div>
-                        </div>
-
-                        <br>
-                        <button type="submit" class="btn btn-lg dark p-x-lg">Сохранить</button>
-                        <br>
-                        <div class="otvet"></div>
-
-                    </form>
+                    <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/action/users/profile.php'?>
                 </div>
 
                 <div class="tab-pane <?if($menu == "change-pasword"){?>active<?}?>" id="change-pasword">
-                    <form id="form-pasword" method="post" action="javascript:void(0);">
+                    <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/action/users/change-pasword.php'?>
+                </div>
 
-                        <div class="form-group row">
-                            <div class="col-sm-3 form-control-label text-muted">Пароль</div>
-                            <div class="col-sm-9">
-                                <input type="password" placeholder="Пароль" name="new-password" class="form-control">
-                            </div>
+                <div class="tab-pane <?if($menu == "upload"){?>active<?}?>" id="upload">
+                    <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/action/users/upload.php'?>
+                </div>
 
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-3 form-control-label text-muted">Повторите пароль</div>
-                            <div class="col-sm-9">
-                                <input type="password" placeholder="Повторите пароль" name="new-password-confirm" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-3 form-control-label text-muted">Старый пароль</div>
-                            <div class="col-sm-9">
-                                <input type="password" placeholder="Старый пароль" name="old-password" class="form-control">
-                            </div>
-                        </div>
-
-                        <br>
-                        <button type="submit" class="btn btn-lg dark p-x-lg">Сохранить</button>
-                        <br>
-                        <div class="otvet"></div>
-
-                    </form>
+                <div class="tab-pane <?if($menu == "add-playlist"){?>active<?}?>" id="add-playlist">
+                    <?require_once $_SERVER["DOCUMENT_ROOT"].'/local/action/users/add-playlist.php'?>
                 </div>
             </div>
 

@@ -48,7 +48,7 @@
   <!-- endbuild -->
 </head>
 <body class="black" data-ui-class="black">
-    <div class="app dk" id="app">
+    <div class="app dk <?if(!$userArray){?>hidde-auto<?}?>" id="app">
         <!-- aside -->
         <div id="aside" class="app-aside modal fade nav-dropdown">
             <!-- fluid app aside -->
@@ -110,6 +110,16 @@
                             </a>
                         </li>
                         <li>
+                            <a href="/users/globals/playlist/">
+                                <span class="nav-icon">
+                                    <i class="material-icons">
+                                    sort
+                                    </i>
+                                </span>
+                                <span class="nav-text">Плейлисты</span>
+                            </a>
+                        </li>
+                       <?/* <li>
                             <a href="artist.html">
                                 <span class="nav-icon">
                                     <i class="material-icons">
@@ -118,7 +128,7 @@
                                 </span>
                                 <span class="nav-text">Исполнители</span>
                             </a>
-                        </li>
+                        </li> */?>
                         <li>
                             <a data-toggle="modal" data-target="#search-modal">
                                 <span class="nav-icon">
@@ -130,79 +140,88 @@
                             </a>
                         </li>
                         
-                        
-                        <li class="nav-header hidden-folded m-t">
-                            <span class="text-xs text-muted">Моя коллекция</span>
-                        </li>
-                        <li>
-                            <a href="/users/?user=track">
-                                <?/*<span class="nav-label">
-                                    <b class="label">8</b>
-                                </span>*/?>
-                                <span class="nav-icon">
-                                    <i class="material-icons">
-                                    list
-                                    </i>
-                                </span>
-                                <span class="nav-text">Треки</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/users/?user=playlist">
-                                <span class="nav-icon">
-                                    <i class="material-icons">
-                                    queue_music
-                                    </i>
-                                </span>
-                                <span class="nav-text">Плейлист</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/users/?user=like">
-                                <span class="nav-icon">
-                                    <i class="material-icons">
-                                    favorite_border
-                                    </i>
-                                </span>
-                                <span class="nav-text">Мне нравится</span>
-                            </a>
-                        </li>
+                        <?
+                            if($userArray){
+                                ?>
+                                    <li class="nav-header hidden-folded m-t">
+                                        <span class="text-xs text-muted">Моя коллекция</span>
+                                    </li>
+                                    <li>
+                                        <a href="/users/?user=track">
+                                            <?/*<span class="nav-label">
+                                                <b class="label">8</b>
+                                            </span>*/?>
+                                            <span class="nav-icon">
+                                                <i class="material-icons">
+                                                list
+                                                </i>
+                                            </span>
+                                            <span class="nav-text">Треки</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/users/?user=playlist">
+                                            <span class="nav-icon">
+                                                <i class="material-icons">
+                                                queue_music
+                                                </i>
+                                            </span>
+                                            <span class="nav-text">Плейлист</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/users/?user=like">
+                                            <span class="nav-icon">
+                                                <i class="material-icons">
+                                                favorite_border
+                                                </i>
+                                            </span>
+                                            <span class="nav-text">Мне нравится</span>
+                                        </a>
+                                    </li>
+                                <?
+                            }
+                        ?>
                         </ul>
                     </nav>
                 </div>
 
-                <div data-flex-no-shrink>
-                    <div class="nav-fold dropup">
-                        <a data-toggle="dropdown">
-                            <span class="pull-left">
-                                <img src="images/a3.jpg" alt="..." class="w-32 img-circle">
-                            </span>
-                            <span class="clear hidden-folded p-x p-y-xs">
-                                <span class="block _500 text-ellipsis">Rachel Platten</span>
-                            </span>
-                        </a>
-                        <div class="dropdown-menu w dropdown-menu-scale ">
-                            <a class="dropdown-item" href="/users/?user=profile">
-                                <span>Профиль</span>
-                            </a>
-                            <a class="dropdown-item" href="/users/?user=track">
-                                <span>Треки</span>
-                            </a>
-                            <a class="dropdown-item" href="/users/">
-                                <span>Плейлисты</span>
-                            </a>
-                            <a class="dropdown-item" href="/users/?user=like">
-                                <span>Мне нравится</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="docs.html">
-                                Need help?
-                            </a>
-                            <a class="dropdown-item" href="signin.html">Sign out</a>
-                        </div>
-                    </div>
-                    
-                </div>
+                <?
+                    if($userArray){
+                        ?>
+                            <div data-flex-no-shrink>
+                                <div class="nav-fold dropup">
+                                    <a data-toggle="dropdown">
+                                        <span class="pull-left">
+                                            <img src="/images/a3.jpg" alt="..." class="w-32 img-circle">
+                                        </span>
+                                        <span class="clear hidden-folded p-x p-y-xs">
+                                            <span class="block _500 text-ellipsis"><?=$userArray["prifileName"]?></span>
+                                        </span>
+                                    </a>
+                                    <div class="dropdown-menu w dropdown-menu-scale ">
+                                        <a class="dropdown-item" href="/users/?user=profile">
+                                            <span>Профиль</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/users/?user=track">
+                                            <span>Треки</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/users/?user=playlist">
+                                            <span>Плейлисты</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/users/?user=like">
+                                            <span>Мне нравится</span>
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+
+                                        <a data-logout class="dropdown-item" href="javascript:void(0);">Выход</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        <?
+                    }
+                ?>
             </div>
         </div>
   <!-- / -->
