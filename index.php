@@ -25,12 +25,12 @@
 									}
 
 									?>
-										<div class="item r">
+										<div class="item r" data-album-player data-id="<?=$value["id"]?>">
 
 											<div class="item-media primary">
 												<a href="/users/globals/playlist/?<?=$typeId?>=<?=$value["id"]?>" class="item-media-content" style="background-image: url('<?=$value["img"]?>');"></a>
 												<div class="item-overlay center">
-													<button class="btn-playpause">Play</button>
+													<button class="btn-playpause" data-id="<?=$value["id"]?>">Play</button>
 												</div>
 											</div>
 

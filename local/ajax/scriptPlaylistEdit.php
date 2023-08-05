@@ -16,7 +16,7 @@
       $ob = new Album;
       $playlist = $ob->IdAlbum($id, $table);
     }
-    //dump($playlist);
+    dump($playlist);
     if(!empty($playlist["track"])){
         ?>
             <script>

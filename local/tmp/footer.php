@@ -315,6 +315,7 @@
   </div>
 
   <div id="playlistScript"></div>
+  <div id="playlistScriptEdit"></div>
 
 <!-- build:js js/app.min.js -->
 <!-- Bootstrap -->
