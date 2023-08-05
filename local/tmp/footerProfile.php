@@ -265,7 +265,7 @@
 </div>
 
 <div id="playlistScript"></div>
-
+<div id="playlistScriptEdit"></div>
 <!-- build:js js/app.min.js -->
 <!-- Bootstrap -->
   <script src="/local/tmp/libs/tether/dist/js/tether.min.js"></script>

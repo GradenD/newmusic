@@ -1,8 +1,26 @@
 <?
     require_once $_SERVER["DOCUMENT_ROOT"].'/local/prolog.php';
 
-    $ob = new Music;
-    $playlist = $ob->treading(100);
+    $table = "";
+    $id = "";
+
+    if(!empty($_REQUEST["id"])){
+      $id = $_REQUEST["id"];
+    }
+
+    if(!empty($_REQUEST["type"])){
+      $table = $_REQUEST["type"];
+    }
+
+    if($table == "album"){
+      $ob = new Album;
+      $playlist = $ob->IdAlbum($id, $table);
+    }
+
+    if(empty($playlist)){
+      $ob = new Music;
+      $playlist = $ob->treading(100);
+    }
 ?>
 <script>
 (function ($) {

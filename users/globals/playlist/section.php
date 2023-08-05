@@ -97,11 +97,11 @@
                             ?>
 
                                 <div class="col-xs-4 col-sm-4 col-md-3">
-                                    <div class="item r" data-id="<?=$key?>" data-src="<?//=$value["mp3"]?>">
+                                    <div class="item r" data-album-player data-id="<?=$value["id"]?>" data-src="<?//=$value["mp3"]?>">
                                         <div class="item-media ">
                                             <a href="/users/globals/playlist/?id=<?=$value["id"]?>" class="item-media-content" style="background-image: url('<?=$value["img"]?>');"></a>
                                             <div class="item-overlay center">
-                                                <button  class="btn-playpause">Play</button>
+                                                <button  class="btn-playpause" data-id="<?=$value["id"]?>">Play</button>
                                             </div>
                                         </div>
                                         <div class="item-info">

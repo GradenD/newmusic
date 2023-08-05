@@ -309,6 +309,21 @@ $( document ).ready(function() {
         }
     });
 
+    $(document).on("click", '[data-album-player] .btn-playpause',function() {
+        var id = $(this).data("id");
+        $.ajax({
+            type:'POST',
+            url:'/local/ajax/scriptPlaylistEdit.php',
+            data:{
+                id: id,
+                type: "album",
+            },
+            success:function(data){
+                $("#playlistScriptEdit").html(data);
+            }
+        });
+    });
+
 
     $.ajax({
         type:'POST',
